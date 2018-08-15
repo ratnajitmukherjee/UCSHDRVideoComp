@@ -1,2 +1,1 @@
-# UCSHDRVideoComp
-Uniform Color Space based HDR video compression
+# Uniform Color Space based HDR Video Compression
