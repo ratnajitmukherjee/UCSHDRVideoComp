@@ -27,7 +27,9 @@ Following the conversion to IPT color space, the intensity and chroma channels a
 The output stream from this process is finally saved as a YUV file which is eventually pushed into the codec (x264/x265/AV1) anything which the user wishes to use.
 
 ## Framework
-![Framework](./figures/Framework.png)
+<p align="center">
+  <img src="./figures/Framework.png" width="650" height="550"> 
+</p>
 
 ## References
 [1] F. Ebner and M. D. Fairchild, “Development and testing of a color space (ipt) with improved hue uniformity,” in Color and Imaging Conference, vol. 1998, pp. 8–13, Society for Imaging Science and Technology, 1998.
