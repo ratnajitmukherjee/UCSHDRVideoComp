@@ -40,7 +40,7 @@ The input RGB frames are first converted to IPT uniform color opponent space. Su
 ### Perceptual transfer function to preserve Intensity information:
 Since we are dealing with scene referred luminance values, the Intensity (I) channel is scaled such that I∈ [0.0001, 10000] cd/m2. This range is then converted to luma L such that L = f(I) where L ∈ [0, 1023] using a novel perceptual transfer function proposed in this work. 
 
-The luminance to luma conversion of some of the existing and proposed function is given in Figure 3.
+<img src="./figures/tviplot.png" width="425" height="375"> <img src="./figures/cviplot.png" width="425" height="375"> 
 
 
 
