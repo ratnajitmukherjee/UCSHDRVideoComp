@@ -55,10 +55,18 @@ This work also proposes a novel chroma preservation technique where a non-linear
 
 #### NOTE: Due to constraints of the mathematical operation to be described, the user is requested to refer to the paper for a detailed description which describes the derivation of the non-linear transform factor.
 
-## Evaluation results
-The proposed algorithm along with the novel luminance and chroma preservation function was evaluated alongside some of the established HDR video compression algorithms using objective metrics, some of which are shown in Figure 4 below. 
+## Evaluation Results and Discussion
+<img src="./figures/pupsnr_mean_res.png" width="425" height="375"> <img src="./figures/hdrvdp_mean_res.png" width="425" height="375"> 
 
+*Figure 4: Evaluation of the proposed algorithm against existing state-of-the-art*
 
+The proposed algorithm along with the novel luminance and chroma preservation function was evaluated alongside four existing state-of-the-art HDR compression algorithms i.e. hdrv [2], BBC-HLG [3], Dolby-PQ [4] and Fraunhofer (adaptive LogLUV [5]) using multiple established HDR-specifc objective metrics, some of which  [6], [7] are shown in Figure 4. The robust and detailed methodology followed for this evaluation has been previously established in [8]. 
+
+As can be seen the proposed algorithm performs better than existing state-of-the-art at bitrates >= 0.4 bpp. However, some of the algorithms such as PQ [4] outperforms the proposed algorithm at bitrates < 0.4 bpp. 
+
+#### NOTE: For full evaluation results, please refer to the main manuscript as well as the supplementary materials provided along with this repository.
 
 ## References
 [1] F. Ebner and M. D. Fairchild, “Development and testing of a color space (ipt) with improved hue uniformity,” in Color and Imaging Conference, vol. 1998, pp. 8–13, Society for Imaging Science and Technology, 1998.
+
+
