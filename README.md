@@ -3,3 +3,31 @@ This work proposes a novel HDR video compression algorithm which uses a perceptu
 
 ## Overall Pipeline:
 ![Overall Pipeline](./figures/overalldiagram.png)
+
+*Figure 1: Overall HDR video compression pipeline of the proposed algorithm*
+
+The proposed HDR video compression algorithm follows the "non-backward compatible" scheme of HDR video compression algorithms wherein the algorithm converts input HDR video frames to single codec suitable HDR video stream using higher bit-depth encoding (i.e. 10/12/14-bits/pixel/channel) using non-linear luminance and chroma preservation techniques as shown in Figure 1.
+
+Input HDR video frames are first changed to the Intensity, Protan and Tritan (IPT) color opponent space described in [1]. The RGB to IPT color space conversion is shown in first block of Figure 1 and described as below: 
+
+ 	RGB --> XYZ --> LMS --> L'M'S' (Hunt-Pointer-Estevez fundamentals) --> IPT
+
+The conversion to IPT uniform color opponent space facilitates a few desirable properties for compression:
+
+##### a) the luminance and chroma information are now decorrelated such that individual channels can be manipulated for compression purposes
+
+##### b) the perceptual uniformity provided by IPT are not prone to Hue compression artefacts seen in CIELAB/CIELUV (which were never really designed for HDR content manipulation).
+
+Following the conversion to IPT color space, the intensity and chroma channels are passed through two non-linear functions for luminance and chroma preservation and scaled to a desired bit-depth (10/12/14) depending upon the user input as described below. 
+	
+	input_depth = ipt * 2^bitdepth (where bitdepth = 10/12/14)
+	
+#### NOTE: We don't use 8-bits because that would be equivalent to Tone Mapping.
+
+The output stream from this process is finally saved as a YUV file which is eventually pushed into the codec (x264/x265/AV1) anything which the user wishes to use.
+
+## Framework
+![Framework](./figures/Framework.png)
+
+## References
+[1] F. Ebner and M. D. Fairchild, “Development and testing of a color space (ipt) with improved hue uniformity,” in Color and Imaging Conference, vol. 1998, pp. 8–13, Society for Imaging Science and Technology, 1998.
