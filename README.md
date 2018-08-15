@@ -42,6 +42,7 @@ Since we are dealing with scene referred luminance values, the Intensity (I) cha
 
 <img src="./figures/tviplot.png" width="425" height="375"> <img src="./figures/cviplot.png" width="425" height="375"> 
 
+*Figure 3: Threshold vs Intensity (TVI) plot (left) and Contrast vs. Intensity (CVI) plot (right)*
 
 
 ### Chroma preservation technique: 
