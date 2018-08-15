@@ -44,8 +44,21 @@ Since we are dealing with scene referred luminance values, the Intensity (I) cha
 
 *Figure 3: Threshold vs Intensity (TVI) plot (left) and Contrast vs. Intensity (CVI) plot (right)*
 
+The TVI plot in the left shows the plots for luminance to luma conversion using several existing as well a novel transfer function proposed as a part of this work. As seen in the TVI plot (left), the proposed transfer function facilitates a good balance between bit allocation towards lower luminance as well as higher luminance values. 
+
+However, a TVI plot is not the only criteria to evaluate the effectiveness of luminance to luma conversion. Therefore, the CVI plot (right) shows demonstrates that the contrast preservation characteristics of the proposed function as compared to existing transfer functions. 
+
+#### NOTE: For full details please refer to the explanation in the paper.
 
 ### Chroma preservation technique: 
+This work also proposes a novel chroma preservation technique where a non-linear factor is used to determine the non-linearity required to transform the P & T channels such that the difference between the scaled (10-bit) floating point values and its corresponding integer conversion is minimum.
+
+#### NOTE: Due to constraints of the mathematical operation to be described, the user is requested to refer to the paper for a detailed description which describes the derivation of the non-linear transform factor.
+
+## Evaluation results
+The proposed algorithm along with the novel luminance and chroma preservation function was evaluated alongside some of the established HDR video compression algorithms using objective metrics, some of which are shown in Figure 4 below. 
+
+
 
 ## References
 [1] F. Ebner and M. D. Fairchild, “Development and testing of a color space (ipt) with improved hue uniformity,” in Color and Imaging Conference, vol. 1998, pp. 8–13, Society for Imaging Science and Technology, 1998.
