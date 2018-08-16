@@ -42,7 +42,7 @@ Since we are dealing with scene referred luminance values, the Intensity (I) cha
 
 <img src="./figures/tviplot.png" width="425" height="375"> <img src="./figures/cviplot.png" width="425" height="375"> 
 
-*Figure 3: Threshold vs Intensity (TVI) plot (left) and Contrast vs. Intensity (CVI) plot (right)*
+*Figure 3: Threshold vs Intensity (TVI) plot [9] (left) and Contrast vs. Intensity (CVI) plot [10] (right)*
 
 The TVI plot in the left shows the plots for luminance to luma conversion using several existing as well a novel transfer function proposed as a part of this work. As seen in the TVI plot (left), the proposed transfer function facilitates a good balance between bit allocation towards lower luminance as well as higher luminance values. 
 
@@ -60,7 +60,7 @@ This work also proposes a novel chroma preservation technique where a non-linear
 
 *Figure 4: Evaluation of the proposed algorithm against existing state-of-the-art*
 
-The proposed algorithm along with the novel luminance and chroma preservation function was evaluated alongside four existing state-of-the-art HDR compression algorithms i.e. hdrv [2], BBC-HLG [3], Dolby-PQ [4] and Fraunhofer (adaptive LogLUV [5]) using multiple established HDR-specifc objective metrics, some of which  [6], [7] are shown in Figure 4. The robust and detailed methodology followed for this evaluation has been previously established in [8]. 
+The proposed algorithm along with the novel luminance and chroma preservation function was evaluated alongside four existing state-of-the-art HDR compression algorithms i.e. hdrv [2], BBC-HLG [3], Dolby-PQ [4] and Fraunhofer (temporally coherent adaptive LogLUV [5]) using multiple established HDR-specifc objective metrics, some of which  [6], [7] are shown in Figure 4. The robust and detailed methodology followed for this evaluation has been previously established in [8]. 
 
 As can be seen the proposed algorithm performs better than existing state-of-the-art at bitrates >= 0.4 bpp. However, some of the algorithms such as PQ [4] outperforms the proposed algorithm at bitrates < 0.4 bpp. 
 
@@ -69,4 +69,21 @@ As can be seen the proposed algorithm performs better than existing state-of-the
 ## References
 [1] F. Ebner and M. D. Fairchild, “Development and testing of a color space (ipt) with improved hue uniformity,” in Color and Imaging Conference, vol. 1998, pp. 8–13, Society for Imaging Science and Technology, 1998.
 
+[2] R. Mantiuk, G. Krawczyk, K. Myszkowski, and H.-P. Seidel, “Perception-motivated high dynamic range video encoding,” in ACM
+SIGGRAPH 2004 Papers, SIGGRAPH ’04, (New York, NY, USA), pp. 733–741, ACM, 2004.
 
+[3] T. Borer and A. Cotton, “A “display independent” high dynamic range television system,” September 2015.
+
+[4] S. Miller, M. Nezamabadi, and S. Daly, “Perceptual signal coding for more efficient usage of bit codes,” SMPTE Motion Imaging Journal, vol. 122, pp. 52–59, May 2013.
+
+[5] J.-U. Garbas and H. Thoma, “Temporally coherent luminance-to-luma mapping for high dynamic range video coding with H.264/AVC,” in Acoustics, Speech and Signal Processing (ICASSP), 2011 IEEE International Conference on, pp. 829–832, May 2011.
+
+[6] T. O. Aydın, R. Mantiuk, and H.-P. Seidel, “Extending quality metrics to full dynamic range images,” in Human Vision and Electronic Imaging XIII, Proceedings of SPIE, (San Jose, USA), pp. 6806–10, January 2008.
+
+[7] M. Narwaria, R. K. Mantiuk, M. P. Da Silva, and P. Le Callet, “HDRVDP-2.2: a calibrated method for objective quality prediction of high dynamic range and standard images,” Journal of Electronic Imaging, vol. 24, no. 1, p. 010501, 2015.
+
+[8] R. Mukherjee, K. Debattista, T. Bashford-Rogers, P. Vangorp, R. Mantiuk, M. Bessa, B. Waterfield, and A. Chalmers, “Objective and subjective evaluation of high dynamic range video compression,” Signal Processing: Image Communication, vol. 47, pp. 426–437, 2016.
+
+[9] J. A. Ferwerda, S. N. Pattanaik, P. Shirley, and D. P. Greenberg, “A model of visual adaptation for realistic image synthesis,” in Proceedings of the 23rd annual conference on Computer graphics and interactive techniques, pp. 249–258, ACM, 1996.
+
+[10] G. Ward, “Defining dynamic range,” in ACM SIGGRAPH 2008 Classes, SIGGRAPH ’08, (New York, NY, USA), pp. 30:1–30:3, ACM, 2008
