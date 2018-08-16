@@ -1,6 +1,35 @@
 # Uniform Color Space based HDR Video Compression
 This work proposes a novel HDR video compression algorithm which uses a perceptually uniform color opponent space, a novel perceptual transfer function to encode the dynamic range of the scene and a novel error minimization scheme for accurate chroma reproduction.
 
+## Usage: 
+The algorithm is divided into two main functions iCAM_Encode (the pre-processing part) which converts the HDR frames into 10-bit codec suitable YUV files and iCAM_Decode to convert decoded YUV files to output EXR frames. 
+
+The iCAM_Encode usage is given as below:
+
+	iCAM_Encode(frame_path, start_frame, frame_step, last_frame, write_path, bitdepth)
+	
+###### frame_path = "source/input EXR frame path"
+###### start_frame = 0 (typically)
+###### frame_step = 1 (typically but you can put 2/3/n depending upon the number of frames you want to skip)
+###### last_frame = n-1 (if n is the number of frames you have in your folder)
+###### write_path = "output YUV file path"
+###### bitdepth = 10/12/14 (depending upon usage) - typically 10 as of now
+
+Similarly, the iCAM_Decode is given as below: 
+
+	iCAM_Decode(read_path, width, height, nFrames, dest_path, bitdepth)
+
+###### read_path = "write path of the decoded YUV file" (typically same as the write path of the iCAM_Encode function)
+###### width = resolution width of the HDR frame 
+###### height = resolution height of the HDR frame
+###### nFrames = number of the frames encoded (this is determined by the number of frames which has been encoded)
+###### dest_path = "output directory where decompressed HDR frames will be dumped
+###### bitdepth = 10/12/14 (depending upon usage) - typically 10 as of now
+
+#### NOTE 1: As of now, the input frames are typically in the format 00000.exr, 00001.exr......00300.exr (i.e. %05d.exr) and the output frames are in the format frame_00000.exr, frame_00001.exr......frame_00300.exr (i.e. frame_%05d.exr).
+
+#### NOTE 2: All frames are typically absolute value calibrated. Please refer to [8] for details about absolute calibration. 
+
 ## Overall Pipeline:
 ![Overall Pipeline](./figures/overalldiagram.png)
 
