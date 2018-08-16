@@ -30,6 +30,18 @@ Similarly, the iCAM_Decode is given as below:
 
 #### NOTE 2: All frames are typically absolute value calibrated. Please refer to [8] for details about absolute calibration. 
 
+## Encoding and decoding scripts (for x264 and x265):
+Static binaries for both x264 and x265 can be used to encode 10-bit YUV files. Please ensure that the binary file downloaded supports 10-bit encoding.
+
+### x264 usage:
+	
+	./x264 --profile high444 --preset veryslow --bframes 3 --b-adapt 2 --tune psnr --qp <quantization parameter (0 to 51)> --frames <number_of_frames> --fps <fps> --input-depth <input_depth (typically 10)>  --input-csp i444 --input-res <width> x <height> --output-csp <typically i420/i422/i444> -o </path/filename.264>  <input_file.yuv>
+	
+### x265 usage:
+Unfortunately, unlike libx264, libx265 does not perform any subsampling. Therefore, if you need to subsample the YUV files to 420 or 422, you will need to use ffmpeg for subsampling. The input-csp in libx265 must match with output-csp. 
+
+	./x265 --profile main444-10 --preset veryslow --bframes 3 --b-adapt 2 --tune psnr --qp <quantization parameter (0 to 51)> --frames <number_of_frames> --fps <fps> --input-depth <input_depth (typically 10)> --input-res <width> x <height> --input <input_file.yuv> --output-depth <output_depth (typically 10)> -o </path/filename.265>
+
 ## Overall Pipeline:
 ![Overall Pipeline](./figures/overalldiagram.png)
 
