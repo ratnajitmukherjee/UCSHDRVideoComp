@@ -4,6 +4,20 @@ This work proposes a novel HDR video compression algorithm which uses a perceptu
 ## Main manuscript and supplementary materials
 The main manuscript (final copy of the IEEE transactions proof to be published) and the supplementary materials are given in the **"paper+supplementary"** folder. The manuscript and supplementary materials contains all the references and the necessary background for a complete reproduction of the work. 
 
+## Prerequisites:
+- MATLAB (any version >=14a preferably)
+- MATLAB HDR Toolbox https://github.com/banterle/HDR_Toolbox
+- MATLAB EXR:
+  - For windows: Directly download and install https://bitbucket.org/edgarv/hdritools/
+  - For Linux: Download and Install [OpenEXR](http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.1.tar.gz) and [ILMBase](http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.1.tar.gz) from Industrial Light and Magic and setup [MATLAB EXR](http://people.csail.mit.edu/kimo/software/matlabexr/)
+  - For Mac: Please follow the instructions given in https://github.com/skycaptain/openexr-matlab
+- **X264**: Application binaries for Windows Linux and Mac are given [here](http://download.videolan.org/pub/x264/binaries/)
+- **x265**: Application binaries are available [here](https://builds.x265.eu/)
+- **ffmpeg**: ffmpeg 10-bit static builds are available [here](https://www.johnvansickle.com/ffmpeg/)
+
+NOTE: Download and install the **x264, x265 and ffmpeg** binaries and add path such that the application can automatically find the binaries in the system path without explicitly mentioning locations. For Linux, please place them in **/usr/local/bin**
+
+
 ## Usage: 
 The algorithm is divided into two main functions iCAM_Encode (the pre-processing part) which converts the HDR frames into 10-bit codec suitable YUV files and iCAM_Decode to convert decoded YUV files to output EXR frames. 
 
@@ -41,7 +55,11 @@ Static binaries for both x264 and x265 can be used to encode 10-bit YUV files. P
 	./x264 --profile high444 --preset veryslow --bframes 3 --b-adapt 2 --tune psnr --qp <quantization parameter (0 to 51)> --frames <number_of_frames> --fps <fps> --input-depth <input_depth (typically 10)>  --input-csp i444 --input-res <width> x <height> --output-csp <typically i420/i422/i444> -o </path/filename.264>  <input_file.yuv>
 	
 ### x265 usage:
-Unfortunately, unlike libx264, libx265 does not perform any subsampling. Therefore, if you need to subsample the YUV files to 420 or 422, you will need to use ffmpeg for subsampling. The input-csp in libx265 must match with output-csp. 
+Unfortunately, unlike libx264, libx265 does not perform any subsampling. Therefore, if you need to subsample the YUV files to 420 or 422, you will need to use ffmpeg for subsampling as shown below:
+
+	./ffmpeg -y -pix_fmt yuv444p10le -s <width>x<height> -r <fps> -i <input_yuv_file> -f rawvideo -pix_fmt yuv420p10le -s <width>x<height> -r <fps> <output_yuv_file>
+	
+Change _yuv420p10le_ to _yuv422p10le_ if you want to subsample to YUV 4:2:2 format. The input-csp in libx265 must match with output-csp. Subsequently encode the subsampled YUV file as shown below:
 
 	./x265 --profile main444-10 --preset veryslow --bframes 3 --b-adapt 2 --tune psnr --qp <quantization parameter (0 to 51)> --frames <number_of_frames> --fps <fps> --input-depth <input_depth (typically 10)> --input-res <width> x <height> --input <input_file.yuv> --output-depth <output_depth (typically 10)> -o </path/filename.265>
 
@@ -131,3 +149,28 @@ SIGGRAPH 2004 Papers, SIGGRAPH ’04, (New York, NY, USA), pp. 733–741, ACM, 2
 [9] J. A. Ferwerda, S. N. Pattanaik, P. Shirley, and D. P. Greenberg, “A model of visual adaptation for realistic image synthesis,” in Proceedings of the 23rd annual conference on Computer graphics and interactive techniques, pp. 249–258, ACM, 1996.
 
 [10] G. Ward, “Defining dynamic range,” in ACM SIGGRAPH 2008 Classes, SIGGRAPH ’08, (New York, NY, USA), pp. 30:1–30:3, ACM, 2008
+
+## Citation: 
+Plain Text: 
+
+	R. Mukherjee, K. Debattista, T. Bashford-Rogers, M. Bessa and A. Chalmers, "Uniform Color Space based High Dynamic Range Video Compression," in IEEE Transactions on Circuits and Systems for Video Technology.doi: 10.1109/TCSVT.2018.2861560 
+	keywords: {Video compression;Transfer functions;Encoding;Image color analysis;Heuristic algorithms;Streaming media;Dynamic range},URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8423705&isnumber=4358651
+
+
+BibTex: 
+
+	@ARTICLE{8423705,
+	author={R. Mukherjee and K. Debattista and T. Bashford-Rogers and M. Bessa and A. Chalmers},
+	journal={IEEE Transactions on Circuits and Systems for Video Technology},
+	title={Uniform Color Space based High Dynamic Range Video Compression},
+	year={2018},
+	volume={},
+	number={},
+	pages={1-1},
+	keywords={Video compression;Transfer functions;Encoding;Image color analysis;Heuristic algorithms;Streaming media;Dynamic range},
+	doi={10.1109/TCSVT.2018.2861560},
+	ISSN={1051-8215},
+	month={},}
+	
+## Contact: 
+If you have any further questions, please contact: **ratnajitmukherjee@gmail.com** and I will be happy to answer your questions. 
